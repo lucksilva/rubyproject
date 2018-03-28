@@ -1,0 +1,11 @@
+"pt-BR":
+  buttons:
+    show: Mostrar
+    edit: Editar
+    destroy: Excluir
+    new: Novo
+    back: Voltar
+    save: Salvar
+    contact: Contato
+    kind: Tipos de Contatos
+    newkind: Add Tipo
