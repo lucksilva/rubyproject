@@ -1,0 +1,19 @@
+
+<div class="container">
+<%= form_for(@kind, html: { class: "dark-matter" }) do |f| %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+
+<div class="dark-matter3">
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @kind.description %>
+</p>
+
+<%= link_to t('buttons.edit'), edit_kind_path(@kind), class: "btn btn-info"%> 
+<%= link_to t('buttons.back'), kinds_path, class: "btn btn-warning" %>
+  </div>
+</div>
+<% end %>

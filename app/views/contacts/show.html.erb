@@ -1,0 +1,33 @@
+<%#div para centralizar a pagina%>
+<div class="container">
+  <%#form para o tema%>
+ <%= form_for(@contact, html: { class: "dark-matter" }) do |f| %> 
+ <%#link para funcionar o bootstrap%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+
+<div class="dark-matter">
+  <table class="table table-condensed">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @contact.nome %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @contact.email %>
+</p>
+
+<p>
+  <strong>Kind:</strong>
+  <%= @contact.kind_id %>
+</p>
+  </table>
+
+
+<%= link_to t('buttons.edit'), edit_contact_path(@contact), class: "button-edit"%> |
+<%= link_to t('buttons.back'), contacts_path, class: "button-back"%>
+  </div>
+</div>
+<% end %>

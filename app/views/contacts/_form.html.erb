@@ -1,0 +1,126 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://myprojects-lucosilcorreia950957.codeanyapp.com/#">A Mente</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://myprojects-lucosilcorreia950957.codeanyapp.com/contacts/new">Cadastrar Cliente</a></li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<%= form_for(@contact, html: { class: "dark-matter" }) do |f| %>
+  <center>
+  <h1><%= t('messages.Cabecario_newcontact') %> </h1>
+  </center>
+
+
+
+  <div class="field">
+    <%= f.label :nome %><br>
+    <%= f.text_field :nome %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :kind_id %><br>
+    <% #collection_select(objet, method, collection, value_method, text_method, options = {}, html_options = {}) public %>
+    <%= f.collection_select(:kind_id, @kind_options_for_select, :id, :description) %>
+  </div>
+
+
+ <%= f.fields_for :address do |address_fields| %>
+   <div class="field">
+      <%= address_fields.label :street %><br>
+      <%= address_fields.text_field :street %>
+   </div>
+
+
+    <div class="field">
+      <%= address_fields.label :city %><br>
+      <%= address_fields.text_field :street %>
+   </div>
+
+
+  <div class="field">
+      <%= address_fields.label :state %><br>
+      <%= address_fields.select :state, option_for_states(@contact.address.state)%>
+   </div>
+
+
+  <div id = "phones">
+     
+      <%= f.fields_for :phones do |phones_fields| %>
+      <%= render partial: "phone_fields", locals: { f: phones_fields } %>      
+    <% end %>
+    
+    
+     <div class="field">
+        <%= f.label :phones, ">" %><br>
+        <%= link_to_add_association('[Adicionar Telefone]', f, :phones) %><br>
+      </div>
+  </div>
+  
+
+  <div class="field">
+   
+    <br><%= f.label :rmk %><br>
+    <%= f.text_area :rmk %>
+ 
+  </div>
+
+ <% end %>
+
+
+  <div class="field">
+    <center>
+    <%= f.submit t('buttons.save'), class: "button" %>
+    <% link_to t('buttons.back'), contacts_path, class: "button-back" %>
+      </center>
+  </div>
+
+<% if @contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= "#{pluralize(@contact.errors.count, "error")} #{t('message.erro')}" %></h2>
+
+      <ul>
+      <% @contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ <% end %>

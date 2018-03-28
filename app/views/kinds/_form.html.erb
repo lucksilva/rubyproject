@@ -1,0 +1,28 @@
+<%= form_for(@kind, html: { class: "dark-matter" }) do |f| %>
+  <% if @kind.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@kind.errors.count, "error") %> prohibited this kind from being saved:</h2>
+
+      <ul>
+      <% @kind.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<center>
+<h1> Kind </h1>
+</center>
+
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <center>
+    <%= f.submit "Salvar", class: "button" %>
+    <%= link_to 'Back', contacts_path, class: "button-back" %>
+    </center>
+  </div>
+<% end %>

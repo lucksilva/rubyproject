@@ -1,0 +1,90 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://myprojects-lucosilcorreia950957.codeanyapp.com/#">A Mente</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://myprojects-lucosilcorreia950957.codeanyapp.com/contacts/new">Cadastrar Cliente</a></li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+
+<div class="dark-matter2">
+
+<p id="notice"> <%= notice %></p>
+<center>
+<h1><%="#{t('messages.listing')}" " #{@contacts.model.model_name.human(count: @contacts.count)}"%></h1>
+</center>
+<table class="table table-hover">
+  
+  <thead>
+    <tr>
+      
+      <th><%=@contacts.model.human_attribute_name("nome")%></th>
+      <th><%=@contacts.model.human_attribute_name("email")%></th>
+      <th><%=@contacts.model.human_attribute_name("kind")%></th>
+      <th><%@contacts.model.human_attribute_name("rmk")%></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+    <% @contacts.each do |contact| %>
+      <tr>
+     
+        <td><%= contact.nome %></td>
+        <td><%= contact.email %></td>
+        <td><%= contact.kind.description %></td>
+        <td><%= link_to t('buttons.show'), contact, class: "btn btn-info" %></td>
+        <td><%= link_to t('buttons.edit'), edit_contact_path(contact), class: "btn btn-warning" %></td>
+        <td><%= link_to t('buttons.destroy'), contact, class: "btn btn-danger", method: :delete, data: { confirm: t('messages.confirm') } %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  <br><br>
+  <center> <%= paginate @contacts %> </center>
+  
+<br>
+
+<%= link_to t('buttons.new'), new_contact_path, class: "btn btn-primary" %> 
+  <%= link_to t('buttons.back'), href = "https://myprojects-lucosilcorreia950957.codeanyapp.com", class: "btn btn-default" %>
+  </div>
+
+</div>
+
+

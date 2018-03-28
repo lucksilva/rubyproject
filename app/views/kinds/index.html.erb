@@ -1,0 +1,37 @@
+<div class="container">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+
+<div class="dark-matter3">
+
+<p id="notice"><%= notice %></p>
+  <center><h1>Listando os Tipos</h1></center>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @kinds.each do |kind| %>
+      <tr>
+        <td><%= kind.description %></td>
+        <td><%= link_to 'Exibir', kind, class: "btn btn-info" %></td>
+        <td><%= link_to 'Editar', edit_kind_path(kind), class: "btn btn-warning" %></td>
+        <td><%= link_to 'Remover', kind, class: "btn btn-danger", method: :delete, data: { confirm: 'Tem cerza?' } %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to t('buttons.newkind'), new_kind_path, class: "btn btn-primary" %> 
+<%= link_to t('buttons.back'), href ="https://myprojects-lucosilcorreia950957.codeanyapp.com", class: "btn btn-default" %>
+  </div>
+</div>
